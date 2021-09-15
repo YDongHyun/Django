@@ -1,7 +1,8 @@
 {% if question_list %}  <!--{% 탬플릿 태그  질문이 있다면-->
     <ul>
     {% for question in question_list %}   <!--하나씩 반복한다.-->
-        <li><a href="/pybo/{{ question.id }}/">{{ question.subject }}</a></li> <!--아이디, 객체 출력-->
+        <!--<li><a href="/pybo/{{ question.id }}/">{{ question.subject }}</a></li> 아이디, 객체 출력-->
+        <li><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a></li> <!--변경됨. questionid= int:question_id에 전달해야하는 값-->
     {% endfor %}  <!--꼭 닫아주기-->
     </ul>
 {% else %}
