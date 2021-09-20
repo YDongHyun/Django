@@ -1,10 +1,32 @@
-{% if question_list %}  <!--{% 탬플릿 태그  질문이 있다면-->
-    <ul>
-    {% for question in question_list %}   <!--하나씩 반복한다.-->
-        <!--<li><a href="/pybo/{{ question.id }}/">{{ question.subject }}</a></li> 아이디, 객체 출력-->
-        <li><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a></li> <!--변경됨. questionid= int:question_id에 전달해야하는 값-->
-    {% endfor %}  <!--꼭 닫아주기-->
-    </ul>
-{% else %}
-    <p>질문이 없습니다.</p>
-{% endif %}   <!--꼭 닫아주기.-->
+{% extends 'base.html' %}
+{% block content %}
+<div calss ="container my-3"></div>
+     <table class ="table">
+         <thead>
+         <tr class="thead-dark">
+             <th>번호</th>
+             <th>제목</th>
+             <th>작성일시</th>
+         </tr>
+         </thead>
+         <tbody>
+         {% if question_list %}  <!--{% 탬플릿 태그  질문이 있다면-->
+         {% for question in question_list %}   <!--하나씩 반복한다.-->
+         <tr>
+             <td>{{forloop.counter}}</td>
+             <td>
+                 <a href="{%url 'pybo:detail' question.id %}">{{question.subject}}</a>
+             </td>
+             <td>{{question.create_date}}</td>
+         </tr>
+         {% endfor %}
+         {% else %}
+         <tr>
+             <td colspan="3">질문이 없습니다.</td>
+         </tr>
+         {% endif %}
+         </tbody>
+     </table>
+     <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+</div>
+{% endblock %} <!--question_list.html은 base.html 템플릿을 상속받아 표준 HTML문서로 바뀌게 될 것이다-->
