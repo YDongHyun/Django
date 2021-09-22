@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Question(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True) #계정 삭제시 모든글 삭제
     subject = models.CharField(max_length=200) #제목의 최대 길이
     content = models.TextField()
     create_date = models.DateTimeField()
@@ -9,6 +11,7 @@ class Question(models.Model):
         return self.subject
 
 class Answer (models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     question = models.ForeignKey(Question,on_delete=models.CASCADE) #Question을 모델 속성으로
     content = models.TextField()
     create_date = models.DateTimeField()
