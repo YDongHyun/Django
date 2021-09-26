@@ -37,6 +37,3 @@ URL 링크의 구조가 자주 변경된다면 템플릿에서 사용한 모든 
 페이지 리스트 루프`{% for page_number in question_list.paginator.page_range %}`
 
 현재 페이지와 같은지 체크`{% if page_number == question_list.number %}`
-
-=======
->>>>>>> b0be7ce80048ea440c01ac57569bce040f204c67
