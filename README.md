@@ -1,2 +1,2 @@
 # Django
-Django 서버 공부
+Django 공부
